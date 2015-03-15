@@ -29,19 +29,18 @@ Archivo de texto plano llamado `list.txt` en la misma carpeta donde se esta ejec
 
 Formato:
 
-   Nombre A B
-   Nombre A B
-   ...
-   <una linea vacía al final>
+    Nombre A B
+    Nombre A B
+    ...
+    <una linea vacía al final>
 
 Donde:
 
- - `Nombre`: el nombre del fragmento (sin espacios)
- - `A`: página donde inicia el recorte
- - `B`: página donde finaliza el recorte (opcional*)
+ - `Nombre`: el nombre del fragmento (sin espacios).
+ - `A`: página donde inicia el recorte.
+ - `B`: página donde finaliza el recorte (opcional*).
+ - Debe haber una línea vacía al final para que el último ítem sea procesado.
 
-* Si no se ingresa `B`, se tomará el valor anterior
-a la página de inicio del item siguiente.
+(*) Si no se ingresa `B`, se tomará el valor anterior a la página de inicio del item siguiente.
 
-Líneas vacías, comenzadas con `#` y con `#` después de `B`, 
-se ignoran.
+Lineas vacías, comenzadas con `#` y con `#` después de `B`,  se ignoran.
