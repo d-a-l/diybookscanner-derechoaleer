@@ -44,3 +44,5 @@ Donde:
 (*) Si no se ingresa `B`, se tomará el valor anterior a la página de inicio del item siguiente.
 
 Lineas vacías, comenzadas con `#` y con `#` después de `B`,  se ignoran.
+
+Ver un ejemplo de `list.txt` [aquí](https://github.com/d-a-l/diybookscanner-derechoaleer/blob/master/pdf-split/list_examples/list.txt)
