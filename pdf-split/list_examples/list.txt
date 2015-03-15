@@ -1,0 +1,38 @@
+40280-1 1
+40280-2 17
+40280-3 41
+40280-4 61
+40280-6 77
+40280-7 97
+40280-8 113
+40280-9 129
+40280-10 141
+
+# otras
+
+40381-OTRA-El_Protestante_Recien_Convertido-1 157 
+# en la pág.157 hay una portada, el número 1 empieza en la 161
+40381-OTRA-El_Protestante_Recien_Convertido-2 178
+40381-OTRA-El_Protestante_Recien_Convertido-3 198
+40381-OTRA-El_Protestante_Recien_Convertido-4 218
+40381-OTRA-El_Protestante_Recien_Convertido-5 238
+
+40379-OTRA-El_Ciudadano-1 258
+40379-OTRA-El_Ciudadano-2 264
+40379-OTRA-El_Ciudadano-3 280 #redigitalizar
+40379-OTRA-El_Ciudadano-4 286 
+40379-OTRA-El_Ciudadano-5 296 #redigitalizar
+40379-OTRA-El_Ciudadano-6 312
+40379-OTRA-El_Ciudadano-7 332
+40379-OTRA-El_Ciudadano-8 348
+40379-OTRA-El_Ciudadano-9 368
+40379-OTRA-El_Ciudadano-10 390
+40379-OTRA-El_Ciudadano-11 402
+40379-OTRA-El_Ciudadano-12 426
+40379-OTRA-El_Ciudadano-13 446
+40379-OTRA-El_Ciudadano-14 462
+40379-OTRA-El_Ciudadano-15 478
+40379-OTRA-El_Ciudadano-16 498
+
+40287-OTRA-El_Avisador-1 508
+40287-OTRA-El_Avisador-2 516 531
