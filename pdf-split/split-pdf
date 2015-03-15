@@ -1,0 +1,113 @@
+#!/bin/bash
+
+if [ "$1" == "" ] ; then
+
+   echo "
+
+AYUDA
+=====
+
+Uso:
+
+   split-pdf  <archivo.pdf> [test]
+
+Opciones:
+
+   test: no ejecuta pdftk, sólo muestra el comando.
+
+Lista a procesar:
+
+   Archivo 'list.txt' en la misma carpeta.
+
+Formato de 'list.txt'
+
+   nombre A B
+   nombre A B
+   ...
+   <una linea vacía al final>
+
+Donde:
+
+ - nombre: el nombre del fragmento (sin espacios)
+ - A: página donde inicia el recorte
+ - B: página donde finaliza el recorte (opcional*)
+
+* Si no se ingresa B, se tomará el valor anterior
+a la página de inicio del item siguiente.
+
+Líneas vacías, comenzadas con '#' y con '#' después de B, 
+se ignoran.
+
+"
+   exit 0
+fi
+
+PDFFILE="$1"
+LISTFILE="list.txt"
+
+if [ ! -f "$LISTFILE" ] ; then
+   echo "Error: No existe 'list.txt' en esta carpeta."
+   exit 0
+fi
+
+N=0
+
+while read line           
+do
+   if [ "$line" != "" ] && [ "${line:0:1}" != "#" ] ; then
+      (( N++ ))
+      read -a val <<< $line
+      NOMBRE["$N"]=${val[0]}
+      PAGINI["$N"]=${val[1]}
+      if [ "${val[2]}" != "" ] && [ "${val[2]:0:1}" != "#" ] ; then
+         PAGFIN["$N"]=${val[2]}
+      else
+         PAGFIN["$N"]=""
+      fi
+   fi
+done < $LISTFILE
+
+for (( i = 1; i <= N; i++ ))
+do
+   if [ "$2" != "" ] ; then
+      echo -n "TEST "
+   fi
+
+   if [ "${PAGFIN[$i]}" == "" ] ; then
+      PAGFIN["$i"]=$(( ${PAGINI[i+1]} - 1 ))
+   fi
+
+   echo "Ítem $i de $N ~ $(( ${PAGFIN[i]} - ${PAGINI[i]} )) páginas..."
+
+   echo -n "   pdftk $PDFFILE cat ${PAGINI[$i]}-${PAGFIN[$i]} output ${NOMBRE[$i]}.pdf"
+   if [ "$2" == "" ] ; then
+      pdftk "$PDFFILE" cat "${PAGINI[$i]}-${PAGFIN[$i]}" output "${NOMBRE[$i]}.pdf" && echo " - OK"
+   else
+      echo ""
+   fi
+   echo ""
+done
+
+
+# Ejemplo de 'list.txt':
+#
+# ---  
+# primera-parte 1
+# capitulo1 5
+# capitulo2 15 #comentario
+# 
+# # otro comentario
+# capitulo3 20 27 #comentario
+# capitulo4 30
+# epilogo 39 45
+#  
+# ---
+# 
+# generará los archivos:
+# 
+#   'primera-parte.pdf' de la página 1 a la 4
+#   'capitulo1.pdf'     de la página 5 a la 14
+#   'capitulo2.pdf'     de la página 15 a la 19
+#   'capitulo3.pdf'     de la página 20 a la 27
+#   'capitulo4.pdf'     de la página 30 a la 38
+#   'epilogo.pdf'       de la página 39 a la 45
